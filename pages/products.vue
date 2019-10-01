@@ -1,12 +1,25 @@
 <template>
   <v-container class="text-center">
     <v-row class="text-center">
-      <h1 style="width:100%">
-        Products
-      </h1>
+      <v-col sm="12" md="12">
+        <h1 style="width:100%">
+          Products
+        </h1>
+      </v-col>
     </v-row>
-    <v-breadcrumbs :items="bread" divider=">" />
     <v-row>
+      <!-- Breadcrumb with > divider between links -->
+      <v-col sm="6" md="6">
+        <v-breadcrumbs :items="breadCr" divider=">" />
+      </v-col>
+      <!-- Search bar -->
+      <v-col sm="6" md="6">
+        <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details>
+        </v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
+      <!-- Placeholder for filters etc section of page -->
       <v-col xs="12" sm="3" md="3">
         <v-card>
           <v-list-item>
@@ -19,14 +32,16 @@
           <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="200" />
         </v-card>
       </v-col>
+      <!-- Product Cards Section of Page -->
       <v-col sm="9" md="9">
         <v-data-iterator :items="items" :items-per-page.sync="itemsPerPage" :footer-props="{ itemsPerPageOptions }">
           <template v-slot:default="props">
             <v-row>
               <v-col v-for="item in props.items" :key="item.name" sm="4" md="3" class="pa-0">
                 <v-card class="mx-2 mb-4">
-                  <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="200" />
-                  <v-card-title><h4>{{ item.name }}</h4></v-card-title>
+                  <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="200">
+                    <v-card-title><h4 style="color:#ffffff;">{{ item.name }}</h4></v-card-title>
+                  </v-img>
                   <v-divider />
                   <v-list dense>
                     <v-list-item>
@@ -69,7 +84,7 @@
 <script>
 export default {
   data: () => ({
-    bread: [
+    breadCr: [
       {
         text: 'Home',
         disabled: false,
@@ -89,6 +104,7 @@ export default {
 
     itemsPerPageOptions: [4, 8, 12],
     itemsPerPage: 4,
+    search: '',
     items: [
       {
         name: 'Amie',
