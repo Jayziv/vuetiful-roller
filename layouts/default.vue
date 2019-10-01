@@ -122,11 +122,6 @@ export default {
           to: '/products'
         },
         {
-          icon: 'mdi-apps',
-          title: 'Test',
-          to: '/Test'
-        },
-        {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
